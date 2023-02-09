@@ -8,14 +8,13 @@ hadesDirectory = str(input("Hades directory (for example C:\Program Files (x86)\
 
 resourceInputValue = 0
 changeResourceValue = str(input("Do you want to overwrite resource values?: "))
-print(changeResourceValue)
+
 if changeResourceValue.lower() == "yes" or changeResourceValue.lower() == "y" or changeResourceValue.lower() == "true":
     changeResourceValue = True
     resourceInputValue = int(input("Value to change the ResourceCost with: "))
 else:
     changeResourceValue = False
 
-# Gems SuperGems MetaPoints GiftPoints LockKeys SuperLockKeys SuperGiftPoints
 resourceTypes = {"Gems", "SuperGems", "MetaPoints", "GiftPoints", "LockKeys", "SuperLockKeys", "SuperGiftPoints"}
 resourceInputType = "Gems"
 changeResourceType = str(input("Overwrite resource types?: "))
@@ -24,7 +23,6 @@ if changeResourceType.lower() == "yes" or changeResourceType.lower() == "y" or c
     resourceInputType = str(input(
         "Resource type, choose from [Gems SuperGems MetaPoints GiftPoints LockKeys SuperLockKeys SuperGiftPoints]: "))
     while resourceInputType not in resourceTypes:
-        print(resourceInputType)
         resourceInputType = str(
             input("Choose from [Gems SuperGems MetaPoints GiftPoints LockKeys SuperLockKeys SuperGiftPoints]: "))
 else:
@@ -35,15 +33,12 @@ conditionalItemDataList = readConditionalItemData.readlines()
 if changeResourceValue:
     for x in range(134, len(conditionalItemDataList)):
         if "ResourceCost" in conditionalItemDataList[x]:
-            conditionalItemDataList[x] = "ResourceCost = " + str(resourceInputValue) + ","
-            print(conditionalItemDataList[x])
+            conditionalItemDataList[x] = "ResourceCost = " + str(resourceInputValue) + ", \n"
 
 if changeResourceType:
-    print("change the types")
     for x in range(134, len(conditionalItemDataList)):
         if "ResourceName" in conditionalItemDataList[x]:
-            conditionalItemDataList[x] = "ResourceName = " + resourceInputType + ","
-            print(conditionalItemDataList[x])
+            conditionalItemDataList[x] = "ResourceName = " + resourceInputType + ", \n"
 
 readConditionalItemData.close()
 
@@ -51,3 +46,4 @@ writeConditionalItemData = open(hadesDirectory + "\Content\Scripts\ConditionalIt
 newFileContents = "".join(conditionalItemDataList)
 writeConditionalItemData.write(newFileContents)
 writeConditionalItemData.close()
+print("Succes")
