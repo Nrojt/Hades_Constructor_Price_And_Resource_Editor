@@ -1,17 +1,20 @@
+from math import *
 '''
 This script can replace the resource type and cost of the contractor. It does this by editing the ConditionalItemData.lua in the scripts folder.
 Please make a backup of the original file before running this script.
 -Made by Nrojt
 '''
+resourceInputValue = 0
+changeResourceValue = False
+
 
 hadesDirectory = str(input("Hades directory (for example C:\Program Files (x86)\Steam\steamapps\common\Hades): "))
 
-resourceInputValue = 0
 changeResourceValue = str(input("Do you want to overwrite resource values?: "))
 
 if changeResourceValue.lower() == "yes" or changeResourceValue.lower() == "y" or changeResourceValue.lower() == "true":
     changeResourceValue = True
-    resourceInputValue = int(input("Value to change the ResourceCost with: "))
+    resourceInputValue = abs(int(input("Value to change the ResourceCost with: ")))
 else:
     changeResourceValue = False
 
